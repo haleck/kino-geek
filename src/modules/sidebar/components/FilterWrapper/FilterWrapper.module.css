@@ -1,0 +1,22 @@
+.filterContainer {
+  margin-block: 1.5rem;
+}
+.filterHeading {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: 500;
+  user-select: none;
+}
+.filterHeading:hover {
+  cursor: pointer;
+}
+.filterIcon {
+  transition: all 0.1s ease;
+  margin-right: 1rem;
+}
+.filterIcon.active {
+  transform: rotate(180deg);
+}
+
+/*# sourceMappingURL=FilterWrapper.module.css.map */

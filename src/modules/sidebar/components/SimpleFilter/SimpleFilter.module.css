@@ -1,0 +1,19 @@
+.simpleFilter {
+  display: inline-block;
+  background-color: var(--bg-color-primary);
+  border-radius: 12px;
+  padding: 1.4rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+.simpleFilter:hover {
+  cursor: pointer;
+}
+.simpleFilter.active {
+  background-color: var(--bg-color-secondary);
+  color: var(--text-color-accent);
+}
+
+/*# sourceMappingURL=SimpleFilter.module.css.map */

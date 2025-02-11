@@ -1,4 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap");
+:root {
+  --bg-color-primary: #F4F4F4;
+  --bg-color-secondary: #373737;
+  --bg-color-content: #FFFFFF;
+  --bg-color-header: #141414;
+  --text-color-primary: #141414;
+  --text-color-secondary: #A1A1A1;
+  --text-color-accent: #FFFFFF;
+  --elements-color-primabry: #373737;
+  --elements-color-secondary: #A1A1A1;
+  --padding-inline-content: 5rem;
+  --padding-block-content: 2.5rem;
+}
+
 html {
   font-size: 10px;
 }

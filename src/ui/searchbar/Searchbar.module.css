@@ -1,0 +1,27 @@
+.searchbarContainer {
+  width: 50rem;
+  height: 4.5rem;
+  background-color: var(--bg-color-secondary);
+  padding: 1.2rem 1.5rem;
+  border-radius: 14px;
+  display: flex;
+  gap: 5px;
+  transition: all 0.2s ease;
+}
+.searchbarContainer.focused {
+  background-color: var(--bg-color-primary);
+}
+.searchbarInput {
+  width: 100%;
+  background-color: transparent;
+  font-size: 1.6rem;
+  border: none;
+}
+.searchbarInput:focus {
+  outline: none;
+}
+.searchbarInput::placeholder {
+  color: var(--text-color-secondary);
+}
+
+/*# sourceMappingURL=Searchbar.module.css.map */

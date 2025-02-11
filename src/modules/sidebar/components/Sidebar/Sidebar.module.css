@@ -1,0 +1,12 @@
+.sidebar {
+  width: 24%;
+}
+
+.simpleFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 2.5rem;
+}
+
+/*# sourceMappingURL=Sidebar.module.css.map */

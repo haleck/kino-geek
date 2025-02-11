@@ -1,0 +1,32 @@
+.filterContainer {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-top: 1rem;
+}
+.filterContainer select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-size: 1.6rem;
+  padding: 1rem 4rem 1rem 1.5rem;
+  border: none;
+  background-color: var(--bg-color-primary);
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+.filterContainer::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1.5rem;
+  width: 12px;
+  height: 10px;
+  background-image: url("./SelectArrow.svg");
+  pointer-events: none;
+}
+
+/*# sourceMappingURL=SelectFilter.module.css.map */

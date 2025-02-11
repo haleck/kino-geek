@@ -1,0 +1,20 @@
+.filterContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  margin-top: 1rem;
+}
+.filterInput {
+  width: 46%;
+  padding: 1rem 1.5rem;
+  background-color: var(--bg-color-primary);
+  border: 1px solid transparent;
+  border-radius: 12px;
+}
+.filterInput:focus {
+  border: 1px solid var(--elements-color-secondary);
+  outline: none;
+}
+
+/*# sourceMappingURL=RangeFilter.module.css.map */

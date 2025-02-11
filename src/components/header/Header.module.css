@@ -1,0 +1,22 @@
+.header {
+  width: 100vw;
+  height: 10rem;
+  background-color: var(--bg-color-header);
+}
+.headerInner {
+  width: min(128rem, 100%);
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: var(--padding-inline-content);
+}
+.headerLogo {
+  margin-top: -5px;
+}
+.headerLogo:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=Header.module.css.map */
