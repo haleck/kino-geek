@@ -1,8 +1,8 @@
 import React from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import MainLayout from "./layouts/MainLayout.tsx";
-import CatalogPage from "./pages/CatalogPage.tsx";
+import MainLayout from "./layouts/main/MainLayout.tsx";
 import MoviePage from "./pages/MoviePage.tsx";
+import CatalogPage from "./pages/CatalogPage.tsx";
 
 function App() {
   return (
