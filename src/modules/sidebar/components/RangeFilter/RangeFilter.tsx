@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classes from './RangeFilter.module.sass'
-import {YearRange} from "../Sidebar/Sidebar.tsx";
+import {YearRange} from "../../types.ts";
 
 interface RangeFilterProps {
     minValue?: number

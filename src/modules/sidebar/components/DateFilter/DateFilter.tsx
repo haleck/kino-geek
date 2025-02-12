@@ -2,7 +2,8 @@ import React, { FC, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import classes from './DateFilter.module.sass';
-import {DateRange} from "../Sidebar/Sidebar.tsx";
+import {DateRange} from "../../types.ts";
+
 
 interface DateFilterProps {
     onChange?: (dates: DateRange) => void

@@ -5,10 +5,7 @@ import FilterWrapper from '../FilterWrapper/FilterWrapper.tsx';
 import SelectFilter from '../SelectFilter/SelectFilter.tsx';
 import RangeFilter from '../RangeFilter/RangeFilter.tsx';
 import DateFilter from '../DateFilter/DateFilter.tsx';
-
-export type DateRange = { from: Date | null; to: Date | null }
-export type YearRange = { from: number | null; to: number | null }
-export type Category = string | null
+import {Category, DateRange, YearRange} from "../../types.ts";
 
 const initialAdvancedFilters = {
     category: null as Category,
