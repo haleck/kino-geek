@@ -43,6 +43,10 @@ export class MoviesStore {
         }
     }
 
+    setFilter<T extends keyof this['filters']>(key: T, value: this["filters"][T]) {
+        this.filters[key] = value
+    }
+
     applyFilters() {
         let filteredMovies = [...this.movies]
 
@@ -63,7 +67,7 @@ export class MoviesStore {
             filteredMovies = filteredMovies.filter(movie => movie.releaseYear === currentYear)
         }
 
-        if (this.filters.genre) {
+        if (this.filters.genre && this.filters.genre !== 'Все жанры') {
             filteredMovies = filteredMovies.filter(movie => movie.genre === this.filters.genre)
         }
 
@@ -80,9 +84,11 @@ export class MoviesStore {
         if (this.filters.createdDateRange.from || this.filters.createdDateRange.to) {
             filteredMovies = filteredMovies.filter(movie => {
                 const { from, to } = this.filters.createdDateRange
+                console.log(from?.toISOString(), to?.toISOString())
+                console.log(movie.createdAt)
                 return (
-                    (!from || movie.createdAt >= from) &&
-                    (!to || movie.createdAt <= to)
+                    (!from || movie.createdAt >= from.toISOString()) &&
+                    (!to || movie.createdAt <= to.toISOString())
                 )
             })
         }

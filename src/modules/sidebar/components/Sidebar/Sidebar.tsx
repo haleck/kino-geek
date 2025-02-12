@@ -5,20 +5,25 @@ import FilterWrapper from '../FilterWrapper/FilterWrapper.tsx';
 import RangeFilter from '../RangeFilter/RangeFilter.tsx';
 import DateFilter from '../DateFilter/DateFilter.tsx';
 import {DateRange, YearRange} from "../../../../types/filters.ts";
-import Selector, {Option} from "../../../../ui/selector/Selector.tsx";
+import Selector from "../../../../ui/selector/Selector.tsx";
+import movieService from "../../../../services/MovieService.ts";
+import {observer} from "mobx-react-lite";
 
 const genreOptions = [
-    {label: 'Все жанры', value: 'all'},
-    {label: 'Комедии', value: 'comedy'},
-    {label: 'Драма', value: 'drama'},
-    {label: 'Экшен', value: 'action'},
+    'Все жанры',
+    'Комедия',
+    'Драма',
+    'Экшен',
+    'Фантастика',
+    'Триллер',
+    'Ужасы',
 ]
 
 const initialAdvancedFilters = {
-    category: genreOptions[0] as Option,
-    announceYear: { from: null, to: null } as YearRange,
-    uploadDate: { from: null, to: null } as DateRange,
-    updateDate: { from: null, to: null } as DateRange,
+    genre: genreOptions[0] as string,
+    releaseYearRange: { from: null, to: null } as YearRange,
+    createdDateRange: { from: null, to: null } as DateRange,
+    updatedDateRange: { from: null, to: null } as DateRange,
 }
 
 const initialSimpleFilters = [
@@ -28,49 +33,53 @@ const initialSimpleFilters = [
     { label: 'Вышли в этом году', value: 'releasedThisYear', isActive: false }
 ]
 
-const Sidebar = () => {
-    const [filters, setFilters] = useState(initialAdvancedFilters)
+const Sidebar = observer(() => {
+    const [activeAdvancedFilters, setActiveAdvancedFilters] = useState(initialAdvancedFilters)
     const [activeSimpleFilters, setActiveSimpleFilters] = useState(initialSimpleFilters)
 
-    const handleFilterChange = <K extends keyof typeof filters>(key: K, value: typeof filters[K]) => {
-        setFilters((prev) => ({ ...prev, [key]: value }))
+    const handleFilterChange = <K extends keyof typeof activeAdvancedFilters>(key: K, value: typeof activeAdvancedFilters[K]) => {
+        setActiveAdvancedFilters((prev) => ({ ...prev, [key]: value }))
+        movieService.setFilter(key, value)
     }
 
-    const toggleSimpleFilter = (filterValue: string) => {
+    const toggleSimpleFilter = (filterValue) => {
         setActiveSimpleFilters(prevFilters =>
-            prevFilters.map(filter =>
-                filter.value === filterValue
-                    ? { ...filter, isActive: !filter.isActive }
-                    : filter
-            )
+            prevFilters.map(filter =>{
+                if (filter.value === filterValue) {
+                    movieService.setFilter(filterValue, !filter.isActive)
+                    return { ...filter, isActive: !filter.isActive }
+                } else {
+                    return filter
+                }
+            })
         )
     }
 
-    const advancedFilters = [
+    const advancedFiltersComponents = [
         {
             label: 'Жанры',
             component: (
                 <Selector
                     options={genreOptions}
-                    selectedOption={filters.category}
-                    onSelectOption={(genre)=>handleFilterChange('category', genre)}
+                    selectedOption={activeAdvancedFilters.genre}
+                    onSelectOption={(genre)=>handleFilterChange('genre', genre)}
                 />
             ),
             defaultVisible: true,
         },
         {
             label: 'Год выпуска',
-            component: <RangeFilter onChange={(year) => handleFilterChange('announceYear', year)} />,
+            component: <RangeFilter onChange={(year) => handleFilterChange('releaseYearRange', year)} />,
             defaultVisible: true,
         },
         {
             label: 'Дата добавления',
-            component: <DateFilter onChange={(date) => handleFilterChange('uploadDate', date)} />,
+            component: <DateFilter onChange={(date) => handleFilterChange('createdDateRange', date)} />,
             defaultVisible: false,
         },
         {
             label: 'Дата обновления',
-            component: <DateFilter onChange={(date) => handleFilterChange('updateDate', date)} />,
+            component: <DateFilter onChange={(date) => handleFilterChange('updatedDateRange', date)} />,
             defaultVisible: false,
         }
     ]
@@ -87,13 +96,13 @@ const Sidebar = () => {
                     />
                 ))}
             </div>
-            {advancedFilters.map(({ label, component, defaultVisible }) => (
+            {advancedFiltersComponents.map(({ label, component, defaultVisible }) => (
                 <FilterWrapper key={label} defaultVisible={defaultVisible} label={label}>
                     {component}
                 </FilterWrapper>
             ))}
         </div>
     );
-};
+});
 
 export default Sidebar;

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import classes from "./ListHeader.module.sass";
 import Button from "../../../../ui/button/Button.tsx";
-import Selector, {Option} from "../../../../ui/selector/Selector.tsx";
+import Selector from "../../../../ui/selector/Selector.tsx";
 import {Sorting} from "../../../../types/sorting.ts";
 
 type SortingOption = {
@@ -9,15 +9,22 @@ type SortingOption = {
     value: keyof typeof Sorting | ""
 }
 
-const sortingOptions: SortingOption[] = [
-    {label: 'Сортировка', value: ""},
-    {label: 'По названию', value: "title"},
-    {label: 'По дате добавления', value: "createdAt"},
-    {label: 'По дате обновления', value: "updatedAt"},
+enum sortFields {
+    'Сортировка'="",
+    'По названию'="title",
+    'По дате добавления'="createdAt",
+    'По дате обновления'="updatedAt",
+}
+
+const sortingOptions: string[] = [
+    'Сортировка',
+    'По названию',
+    'По дате добавления',
+    'По дате обновления',
 ]
 
 const ListHeader = () => {
-    const [selectedOption, setSelectedOption] = useState<Option>(sortingOptions[0])
+    const [selectedOption, setSelectedOption] = useState<string>(sortingOptions[0])
 
     return (
         <header className={classes.headerContainer}>

@@ -70,6 +70,10 @@ export class MovieService {
         this.moviesStore.movies.forEach((movie)=>this.moviesStore.deleteMovie(movie.id))
         this.saveMovies()
     }
+
+    setFilter<T extends keyof MoviesStore["filters"]>(key: T, value: MoviesStore["filters"][T]) {
+        this.moviesStore.setFilter(key, value)
+    }
 }
 
 const movieService = new MovieService(moviesStore)

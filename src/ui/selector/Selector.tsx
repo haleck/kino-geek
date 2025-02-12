@@ -1,14 +1,10 @@
 import React, {FC} from 'react';
 import classes from './Selector.module.sass'
 
-export type Option = {
-    label: string
-    value: string
-}
 interface SelectFilterProps {
-    options: Option[]
-    selectedOption: Option
-    onSelectOption: (option: Option) => void
+    options: string[]
+    selectedOption: string
+    onSelectOption: (option: string) => void
     firstOptionDisabled?: boolean
 }
 
@@ -19,17 +15,13 @@ const Selector: FC<SelectFilterProps> = ({
         firstOptionDisabled,
         ...props
     }) => {
-    const handleChangeOption = (optionValue) => {
-        const option = options.filter((option)=>option.value === optionValue)[0]
-        onSelectOption(option)
-    }
 
     return (
         <div className={classes.filterContainer} {...props}>
-            <select value={selectedOption.value ?? ''} onChange={(e)=>handleChangeOption(e.target.value)}>
+            <select value={selectedOption} onChange={(e)=>onSelectOption(e.target.value)}>
                 {options.map((option, index) => (
-                    <option key={option.value} value={option.value} disabled={index === 0 && firstOptionDisabled}>
-                        {option.label}
+                    <option key={index} value={option} disabled={index === 0 && firstOptionDisabled}>
+                        {option}
                     </option>
                 ))}
             </select>
