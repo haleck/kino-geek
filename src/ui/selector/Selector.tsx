@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import classes from './SelectFilter.module.sass'
+import classes from './Selector.module.sass'
 
 interface SelectFilterProps {
     options: string[]
@@ -7,7 +7,7 @@ interface SelectFilterProps {
     onSelectOption: (option: string) => void
 }
 
-const SelectFilter: FC<SelectFilterProps> = ({
+const Selector: FC<SelectFilterProps> = ({
         options,
         selectedOption,
         onSelectOption
@@ -25,4 +25,4 @@ const SelectFilter: FC<SelectFilterProps> = ({
     );
 };
 
-export default SelectFilter;
+export default Selector;

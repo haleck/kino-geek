@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import SimpleFilter from '../SimpleFilter/SimpleFilter.tsx';
 import classes from './Sidebar.module.sass';
 import FilterWrapper from '../FilterWrapper/FilterWrapper.tsx';
-import SelectFilter from '../SelectFilter/SelectFilter.tsx';
 import RangeFilter from '../RangeFilter/RangeFilter.tsx';
 import DateFilter from '../DateFilter/DateFilter.tsx';
 import {Category, DateRange, YearRange} from "../../types.ts";
+import Selector from "../../../../ui/selector/Selector.tsx";
 
 const initialAdvancedFilters = {
     category: null as Category,
@@ -42,7 +42,7 @@ const Sidebar = () => {
         {
             label: 'Жанры',
             component: (
-                <SelectFilter
+                <Selector
                     options={['Все жанры', 'Комедия', 'Драма', 'Экшен']}
                     selectedOption={filters.category}
                     onSelectOption={(category) => handleFilterChange('category', category)}

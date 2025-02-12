@@ -17,6 +17,9 @@
   outline: none;
   transition: all 0.2s ease;
 }
+.filterContainer select:hover {
+  cursor: pointer;
+}
 .filterContainer::after {
   content: "";
   position: absolute;
@@ -25,8 +28,8 @@
   right: 1.5rem;
   width: 12px;
   height: 10px;
-  background-image: url("./SelectArrow.svg");
+  background-image: url("SelectArrow.svg");
   pointer-events: none;
 }
 
-/*# sourceMappingURL=SelectFilter.module.css.map */
+/*# sourceMappingURL=Selector.module.css.map */
