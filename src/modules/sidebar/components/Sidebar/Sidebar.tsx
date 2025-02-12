@@ -4,11 +4,18 @@ import classes from './Sidebar.module.sass';
 import FilterWrapper from '../FilterWrapper/FilterWrapper.tsx';
 import RangeFilter from '../RangeFilter/RangeFilter.tsx';
 import DateFilter from '../DateFilter/DateFilter.tsx';
-import {Category, DateRange, YearRange} from "../../types.ts";
-import Selector from "../../../../ui/selector/Selector.tsx";
+import {DateRange, YearRange} from "../../../../types/filters.ts";
+import Selector, {Option} from "../../../../ui/selector/Selector.tsx";
+
+const genreOptions = [
+    {label: 'Все жанры', value: 'all'},
+    {label: 'Комедии', value: 'comedy'},
+    {label: 'Драма', value: 'drama'},
+    {label: 'Экшен', value: 'action'},
+]
 
 const initialAdvancedFilters = {
-    category: null as Category,
+    category: genreOptions[0] as Option,
     announceYear: { from: null, to: null } as YearRange,
     uploadDate: { from: null, to: null } as DateRange,
     updateDate: { from: null, to: null } as DateRange,
@@ -17,6 +24,7 @@ const initialAdvancedFilters = {
 const initialSimpleFilters = [
     { label: 'Российские', value: 'russian', isActive: false },
     { label: 'Избранное', value: 'favorites', isActive: false },
+    { label: 'Не избранное', value: 'notFavorites', isActive: false },
     { label: 'Вышли в этом году', value: 'releasedThisYear', isActive: false }
 ]
 
@@ -43,9 +51,9 @@ const Sidebar = () => {
             label: 'Жанры',
             component: (
                 <Selector
-                    options={['Все жанры', 'Комедия', 'Драма', 'Экшен']}
+                    options={genreOptions}
                     selectedOption={filters.category}
-                    onSelectOption={(category) => handleFilterChange('category', category)}
+                    onSelectOption={(genre)=>handleFilterChange('category', genre)}
                 />
             ),
             defaultVisible: true,

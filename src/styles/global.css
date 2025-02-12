@@ -22,7 +22,7 @@ body {
   font-size: 1.4rem;
   background-color: var(--bg-color-primary);
   min-height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 #root {

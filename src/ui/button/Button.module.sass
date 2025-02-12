@@ -1,0 +1,24 @@
+.button
+  display: inline-flex
+  align-items: center
+  padding: 1rem 1.5rem
+  background-color: var(--bg-color-primary)
+  font-size: 1.6rem
+  border-radius: 12px
+  user-select: none
+  transition: all 0.2s ease
+  border: none
+  &:disabled
+    opacity: 0.6
+    cursor: not-allowed
+  &:hover
+    cursor: pointer
+    opacity: 0.95
+
+.accent
+  background-color: var(--bg-color-secondary)
+  color: var(--text-color-accent)
+
+
+.small
+  font-size: 1.2rem

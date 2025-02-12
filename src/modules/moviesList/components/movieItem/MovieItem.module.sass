@@ -1,0 +1,58 @@
+.item
+  display: flex
+  gap: 1rem
+  padding-left: 1.5rem
+  padding-right: 1rem
+  padding-block: 2rem
+  border-bottom: 1px solid var(--elements-color-secondary)
+  &Index
+    font-size: 2rem
+    font-weight: 700
+    width: 50px
+  &Details
+    display: flex
+    margin-left: 1rem
+    flex-direction: column
+    gap: 0.5rem
+    width: 100%
+  &Title, &Year
+    font-size: 2rem
+  &Title
+    font-weight: 700
+    cursor: pointer
+  &Year
+    font-weight: 500
+    margin-left: 0.5rem
+  &Genre
+    font-weight: 600
+  &Producer
+    margin-left: 1.5rem
+  &Annotation, &Roles
+    color: var(--text-color-secondary)
+
+  &FirstLine
+    display: flex
+    align-items: center
+
+  &Favorite
+    display: inline-flex
+    justify-content: center
+    align-items: center
+    margin-left: auto
+    margin-right: 1rem
+    border-radius: 3rem
+    width: 3rem
+    height: 3rem
+    background-color: var(--bg-color-primary)
+    color: var(--elements-color-primabry)
+    user-select: none
+    transition: all 0.3s ease
+    &:hover
+      cursor: pointer
+  &Options
+    cursor: pointer
+    user-select: none
+
+.active
+  background-color: var(--elements-color-secondary)
+

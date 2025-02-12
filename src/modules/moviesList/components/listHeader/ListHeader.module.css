@@ -1,0 +1,17 @@
+.headerContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--elements-color-secondary);
+}
+.headerContainer > button {
+  margin-left: auto;
+}
+.headerHeading {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+/*# sourceMappingURL=ListHeader.module.css.map */

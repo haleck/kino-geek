@@ -1,0 +1,71 @@
+.item {
+  display: flex;
+  gap: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1rem;
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--elements-color-secondary);
+}
+.itemIndex {
+  font-size: 2rem;
+  font-weight: 700;
+  width: 50px;
+}
+.itemDetails {
+  display: flex;
+  margin-left: 1rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+.itemTitle, .itemYear {
+  font-size: 2rem;
+}
+.itemTitle {
+  font-weight: 700;
+  cursor: pointer;
+}
+.itemYear {
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+.itemGenre {
+  font-weight: 600;
+}
+.itemProducer {
+  margin-left: 1.5rem;
+}
+.itemAnnotation, .itemRoles {
+  color: var(--text-color-secondary);
+}
+.itemFirstLine {
+  display: flex;
+  align-items: center;
+}
+.itemFavorite {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 1rem;
+  border-radius: 3rem;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--bg-color-primary);
+  color: var(--elements-color-primabry);
+  user-select: none;
+  transition: all 0.3s ease;
+}
+.itemFavorite:hover {
+  cursor: pointer;
+}
+.itemOptions {
+  cursor: pointer;
+  user-select: none;
+}
+
+.active {
+  background-color: var(--elements-color-secondary);
+}
+
+/*# sourceMappingURL=MovieItem.module.css.map */
