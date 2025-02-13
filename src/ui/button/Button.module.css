@@ -1,6 +1,7 @@
 .button {
   display: inline-flex;
   align-items: center;
+  gap: 0.8rem;
   padding: 1rem 1.5rem;
   background-color: var(--bg-color-primary);
   font-size: 1.6rem;

@@ -38,10 +38,10 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({
             <h3 className={classes.header}>{title}</h3>
             <p>{message}</p>
             <div className={classes.modalActions}>
-                <Button onClick={handleConfirm} variant={'accent'}>
+                <Button onClick={handleConfirm} variant={'accent'} data-role={'confirmBtn'}>
                     Подтвердить
                 </Button>
-                <Button onClick={handleCancel} variant={'accent'}>
+                <Button onClick={handleCancel} variant={'accent'} data-role={'confirmBtn'}>
                     Отмена
                 </Button>
             </div>

@@ -1,0 +1,42 @@
+.container
+  display: grid
+  grid-template-columns: auto 1fr 1fr 1fr
+  grid-template-rows: 10rem
+  column-gap: 5rem
+  row-gap: 3rem
+
+.cover
+  grid-row: 1 / span 4
+  grid-column: 1
+
+.header
+  grid-row: 1
+  grid-column: 2 / span 3
+
+.heading
+  font-size: 2.8rem
+  font-weight: 700
+
+.content
+  grid-row: 2 / span 3
+  grid-column: 2 / span 3
+
+.actions
+  display: flex
+  gap: 1.5rem
+  margin-top: 2rem
+
+.description
+  margin-top: 2rem
+  display: grid
+  row-gap: 1.5rem
+  grid-template-columns: 25rem 1fr
+
+.key, .value
+  font-size: 2rem
+
+.key
+  color: var(--text-color-secondary)
+
+.key, .value, .heading
+  padding: 0.8rem

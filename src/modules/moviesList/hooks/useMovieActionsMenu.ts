@@ -25,7 +25,7 @@ const useMovieActionsMenu = () => {
     };
 
     const closeActionsMenu = (event) => {
-        const ignoreElements = ['actions', 'actionsSvg', 'modal'];
+        const ignoreElements = ['actions', 'actionsSvg', 'modal', 'confirmBtn'];
         if (ignoreElements.some(role => event.target.closest(`[data-role="${role}"]`))) {
             return;
         }

@@ -7,14 +7,16 @@ type size = 'big' | 'small'
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: variant
     size?: size
+    className?: string
 }
 
-const Button: FC<ButtonProps> = ({variant, size, children, ...props}) => {
+const Button: FC<ButtonProps> = ({className, variant, size, children, ...props}) => {
     return (
         <button
             className={`${classes.button} 
             ${variant === 'accent' ? classes.accent : ''} 
-            ${size === 'small' ? classes.small : ''}`}
+            ${size === 'small' ? classes.small : ''}
+            ${className || ''}`}
             {...props}
         >
             {children}

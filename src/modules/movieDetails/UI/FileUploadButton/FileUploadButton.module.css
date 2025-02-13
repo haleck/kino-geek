@@ -1,0 +1,14 @@
+.button {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  font-weight: 500;
+}
+
+.input {
+  display: none;
+}
+
+/*# sourceMappingURL=FileUploadButton.module.css.map */
