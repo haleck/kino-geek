@@ -14,3 +14,13 @@ export interface Movie {
     isFavorite: boolean
     coverImage?: string
 }
+
+export const genreOptions = [
+    'Все жанры',
+    'Комедия',
+    'Драма',
+    'Экшен',
+    'Фантастика',
+    'Триллер',
+    'Ужасы',
+]

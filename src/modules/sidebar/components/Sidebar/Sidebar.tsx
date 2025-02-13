@@ -8,16 +8,7 @@ import {DateRange, YearRange} from "../../../../types/filters.ts";
 import Selector from "../../../../ui/selector/Selector.tsx";
 import movieService from "../../../../services/MovieService.ts";
 import {observer} from "mobx-react-lite";
-
-const genreOptions = [
-    'Все жанры',
-    'Комедия',
-    'Драма',
-    'Экшен',
-    'Фантастика',
-    'Триллер',
-    'Ужасы',
-]
+import {genreOptions} from "../../../../types/movie.ts";
 
 const initialAdvancedFilters = {
     genre: genreOptions[0] as string,

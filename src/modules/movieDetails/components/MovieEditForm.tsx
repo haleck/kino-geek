@@ -1,13 +1,14 @@
 import React, { useReducer } from 'react'
 import classes from '../styles/GlobalMovieStyles.module.sass'
 import Input from '../../../ui/Input/Input.tsx'
-import { Movie } from '../../../types/movie.ts'
+import {genreOptions, Movie} from '../../../types/movie.ts'
 import { MovieLabels } from '../types/types.ts'
 import Button from '../../../ui/button/Button.tsx'
 import SaveSvg from '../../../assets/save.svg'
 import CancelSvg from '../../../assets/cancel.svg'
 import Cover from "../UI/Cover/Cover.tsx";
 import FileUploadButton from "../UI/FileUploadButton/FileUploadButton.tsx";
+import Selector from "../../../ui/selector/Selector.tsx";
 
 interface MovieEditFormProps {
     movie: Movie
@@ -62,6 +63,52 @@ const MovieEditForm = ({ movie, setMode }: MovieEditFormProps) => {
         setMode('view')
     }
 
+    // Функция для рендеринга поля фильма
+    const renderField = (key: keyof FormState, value: string | number | Date) => {
+        const label = MovieLabels[key]
+
+        // Если в ассоциативном объекте нет такого ключа - поле отображать не нужно
+        if (!label) return null
+
+        // Если ключ - дата добавления или обновления - отобразить только значение
+        if (key === 'createdAt' || key === 'updatedAt') {
+            return (
+                <React.Fragment key={key}>
+                    <div className={classes.key}>{label}</div>
+                    <div className={classes.value}>{value}</div>
+                </React.Fragment>
+            )
+        }
+
+        // Если ключ - жанр, отобразить Selector
+        if (key === 'genre') {
+            return (
+                <React.Fragment key={key}>
+                    <div className={classes.key}>{label}</div>
+                    <Selector
+                        options={genreOptions}
+                        selectedOption={value as string}
+                        onSelectOption={(newValue) => handleChange(key, newValue)}
+                        firstOptionDisabled={true}
+                        selectClassName={classes.value}
+                    />
+                </React.Fragment>
+            )
+        }
+
+        // Для остальных полей использовать Input
+        return (
+            <React.Fragment key={key}>
+                <div className={classes.key}>{label}</div>
+                <Input
+                    value={String(value)}
+                    setValue={(newValue) => handleChange(key, newValue)}
+                    className={classes.value}
+                />
+            </React.Fragment>
+        )
+    }
+
     return (
         <div className={classes.container}>
             <div className={classes.header}>
@@ -90,28 +137,7 @@ const MovieEditForm = ({ movie, setMode }: MovieEditFormProps) => {
             <div className={classes.content}>
                 <div className={classes.heading}>О фильме</div>
                 <div className={classes.description}>
-                    {/* Рендер полей объекта фильма */}
-                    {Object.entries(formState).map(([key, value]) => {
-                        const label = MovieLabels[key as keyof FormState]
-                        // Если в ассоциативном объекте нет такого ключа - поле отображать не нужно
-                        if (!label) return null
-
-                        return (
-                            <React.Fragment key={key}>
-                                <div className={classes.key}>{label}</div>
-                                {/* Если ключ - дата добавления или обновления - ограничить возможность редактирования */}
-                                {key !== 'createdAt' && key !== 'updatedAt' ?
-                                    <Input
-                                        value={value}
-                                        setValue={(newValue) => handleChange(key as keyof FormState, newValue)}
-                                        className={classes.value}
-                                    />
-                                    :
-                                    <div className={classes.value}>{value}</div>
-                                }
-                            </React.Fragment>
-                        )
-                    })}
+                    {Object.entries(formState).map(([key, value]) => renderField(key as keyof FormState, value))}
                 </div>
             </div>
         </div>

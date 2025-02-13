@@ -6,6 +6,7 @@ interface SelectFilterProps {
     selectedOption: string
     onSelectOption: (option: string) => void
     firstOptionDisabled?: boolean
+    selectClassName?: string
 }
 
 const Selector: FC<SelectFilterProps> = ({
@@ -13,12 +14,13 @@ const Selector: FC<SelectFilterProps> = ({
         selectedOption,
         onSelectOption,
         firstOptionDisabled,
+        selectClassName,
         ...props
     }) => {
 
     return (
         <div className={classes.filterContainer} {...props}>
-            <select value={selectedOption} onChange={(e)=>onSelectOption(e.target.value)}>
+            <select value={selectedOption} onChange={(e)=>onSelectOption(e.target.value)} className={selectClassName}>
                 {options.map((option, index) => (
                     <option key={index} value={option} disabled={index === 0 && firstOptionDisabled}>
                         {option}

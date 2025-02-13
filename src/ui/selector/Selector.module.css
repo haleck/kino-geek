@@ -3,7 +3,19 @@
   display: inline-block;
   width: 100%;
 }
-.filterContainer select {
+.filterContainer::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1.5rem;
+  width: 12px;
+  height: 10px;
+  background-image: url("SelectArrow.svg");
+  pointer-events: none;
+}
+
+select {
   width: 100%;
   appearance: none;
   -webkit-appearance: none;
@@ -16,19 +28,8 @@
   outline: none;
   transition: all 0.2s ease;
 }
-.filterContainer select:hover {
+select:hover {
   cursor: pointer;
-}
-.filterContainer::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 1.5rem;
-  width: 12px;
-  height: 10px;
-  background-image: url("SelectArrow.svg");
-  pointer-events: none;
 }
 
 /*# sourceMappingURL=Selector.module.css.map */
