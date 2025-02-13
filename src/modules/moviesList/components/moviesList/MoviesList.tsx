@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import classes from './moviesList.module.sass'
 import ListHeader from "../listHeader/ListHeader.tsx";
 import movieService from "../../../../services/MovieService.ts";
@@ -11,6 +11,7 @@ import {useNavigate} from "react-router-dom";
 
 const MoviesList = observer(() => {
     const [showConfirmationModal, setShowConfirmationModal] = useState<boolean>(false);
+    const listRef= useRef<HTMLDivElement | null>(null)
 
     const movies = movieService.getMovies()
     const {activeActionsMenu, changeActiveActionsMenu} = useMovieActionsMenu()
@@ -26,6 +27,15 @@ const MoviesList = observer(() => {
         navigate(`/${id}`)
     }
 
+    // Убирает меню действий при скролле списка
+    useEffect(() => {
+        const resetActiveActionMenu = () => changeActiveActionsMenu({movie: null, position: null})
+
+        listRef.current?.addEventListener('scroll', resetActiveActionMenu)
+
+        return () => listRef.current?.removeEventListener('scroll', resetActiveActionMenu)
+    }, []);
+
     return (
         <div className={classes.listContainer}>
             <div className={classes.listHeaderWrapper}>
@@ -33,7 +43,7 @@ const MoviesList = observer(() => {
             </div>
             {/*<button onClick={()=>movieService.addTestMovies()}>add</button>*/}
             {/*<button onClick={()=>movieService.deleteAllMovies()}>remove</button>*/}
-            <div className={classes.listItems}>
+            <div className={classes.listItems} ref={listRef}>
                 {movies.length > 0?
                     movies.map((movie, index)=>
                         <MovieItem

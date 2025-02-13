@@ -16,6 +16,7 @@ export class MoviesStore {
         createdDateRange: { from: null, to: null } as DateRange,
     }
     searchQuery: string = ""
+    sorting: Sorting = "createdAt"
 
     constructor() {
         makeAutoObservable(this)
@@ -56,10 +57,6 @@ export class MoviesStore {
 
         if (this.filters.favorites) {
             filteredMovies = filteredMovies.filter(movie => movie.isFavorite)
-        }
-
-        if (this.filters.notFavorites) {
-            filteredMovies = filteredMovies.filter(movie => !movie.isFavorite)
         }
 
         if (this.filters.releasedThisYear) {
@@ -123,7 +120,7 @@ export class MoviesStore {
         })
     }
 
-    sortMovies(movies: Movie[], sortBy: keyof typeof Sorting) {
+    sortMovies(movies: Movie[], sortBy: Sorting) {
         return movies.sort((a, b) => {
             if (sortBy === 'title') {
                 return a.title.localeCompare(b.title)
@@ -133,12 +130,18 @@ export class MoviesStore {
         })
     }
 
+    setSorting(newSorting: Sorting) {
+        this.sorting = newSorting
+    }
+
     get sortedFilteredAndSearchedMovies() {
         let filteredMovies = this.applyFilters()
 
         let searchedMovies = this.applySearch(filteredMovies)
 
-        return this.sortMovies(searchedMovies, 'createdAt')
+        const res = this.sortMovies(searchedMovies, this.sorting)
+        console.log(res)
+        return res
     }
 }
 

@@ -1,5 +1,1 @@
-export enum Sorting {
-    title= "Title",
-    createdAt = "CreatedAt",
-    updatedAt = "UpdatedAt"
-}
+export type Sorting = "title" | "createdAt" | "updatedAt"

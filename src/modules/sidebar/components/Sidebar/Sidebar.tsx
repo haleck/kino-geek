@@ -29,7 +29,6 @@ const initialAdvancedFilters = {
 const initialSimpleFilters = [
     { label: 'Российские', value: 'russian', isActive: false },
     { label: 'Избранное', value: 'favorites', isActive: false },
-    { label: 'Не избранное', value: 'notFavorites', isActive: false },
     { label: 'Вышли в этом году', value: 'releasedThisYear', isActive: false }
 ]
 

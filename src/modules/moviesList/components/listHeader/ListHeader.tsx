@@ -2,12 +2,7 @@ import React, {useState} from 'react';
 import classes from "./ListHeader.module.sass";
 import Button from "../../../../ui/button/Button.tsx";
 import Selector from "../../../../ui/selector/Selector.tsx";
-import {Sorting} from "../../../../types/sorting.ts";
-
-type SortingOption = {
-    label: string,
-    value: keyof typeof Sorting | ""
-}
+import movieService from "../../../../services/MovieService.ts";
 
 enum sortFields {
     'Сортировка'="",
@@ -26,6 +21,11 @@ const sortingOptions: string[] = [
 const ListHeader = () => {
     const [selectedOption, setSelectedOption] = useState<string>(sortingOptions[0])
 
+    const handleChangeSorting = (sorting) => {
+        movieService.setSorting(sortFields[sorting])
+        setSelectedOption(sorting)
+    }
+
     return (
         <header className={classes.headerContainer}>
             <div className={classes.headerHeading}>
@@ -37,7 +37,7 @@ const ListHeader = () => {
             <Selector
                 options={sortingOptions}
                 selectedOption={selectedOption}
-                onSelectOption={(sorting)=>setSelectedOption(sorting)}
+                onSelectOption={(sorting)=>handleChangeSorting(sorting)}
                 firstOptionDisabled={true}
                 style={{width: 'auto', flexShrink: 0}}
             />

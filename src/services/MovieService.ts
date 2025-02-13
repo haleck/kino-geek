@@ -4,6 +4,7 @@ import moviesStore, {MoviesStore} from "../store/MoviesStore"
 import {LocalStorage} from "../localStorage/LocalStorage"
 import {Genre} from "../types/filters.ts";
 import {testMovies} from "./testMovies.ts";
+import {Sorting} from "../types/sorting.ts";
 
 export class MovieService {
     private moviesStore: MoviesStore
@@ -41,7 +42,6 @@ export class MovieService {
     }
 
     deleteMovie(id: string) {
-        console.log('deleting')
         this.moviesStore.deleteMovie(id)
         this.saveMovies()
     }
@@ -69,6 +69,10 @@ export class MovieService {
     deleteAllMovies() {
         this.moviesStore.movies.forEach((movie)=>this.moviesStore.deleteMovie(movie.id))
         this.saveMovies()
+    }
+
+    setSorting(sorting: Sorting) {
+        this.moviesStore.setSorting(sorting)
     }
 
     setFilter<T extends keyof MoviesStore["filters"]>(key: T, value: MoviesStore["filters"][T]) {
