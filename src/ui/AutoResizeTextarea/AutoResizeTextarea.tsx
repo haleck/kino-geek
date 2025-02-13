@@ -1,5 +1,5 @@
 import React, {forwardRef, useEffect, useRef} from 'react';
-import classes from './AutoResizeTextarea.module.sass'
+import './AutoResizeTextarea.module.sass'
 
 interface AutoResizeTextareaProps {
     text: string
@@ -62,7 +62,7 @@ const AutoResizeTextarea = forwardRef<HTMLTextAreaElement, AutoResizeTextareaPro
             onBlur={onBlur}
             onKeyDown={handleKeyDown}
             rows={1}
-            className={`${classes.textarea} ${className}`}
+            className={className}
             {...props}
         />
     );

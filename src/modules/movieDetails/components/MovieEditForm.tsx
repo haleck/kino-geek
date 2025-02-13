@@ -9,6 +9,7 @@ import CancelSvg from '../../../assets/cancel.svg'
 import Cover from "../UI/Cover/Cover.tsx";
 import FileUploadButton from "../UI/FileUploadButton/FileUploadButton.tsx";
 import Selector from "../../../ui/selector/Selector.tsx";
+import AutoResizeTextarea from "../../../ui/AutoResizeTextarea/AutoResizeTextarea.tsx";
 
 interface MovieEditFormProps {
     movie: Movie
@@ -70,7 +71,7 @@ const MovieEditForm = ({ movie, setMode }: MovieEditFormProps) => {
         // Если в ассоциативном объекте нет такого ключа - поле отображать не нужно
         if (!label) return null
 
-        // Если ключ - дата добавления или обновления - отобразить только значение
+        // Если ключ - дата добавления или обновления, отобразить только значение
         if (key === 'createdAt' || key === 'updatedAt') {
             return (
                 <React.Fragment key={key}>
@@ -96,6 +97,22 @@ const MovieEditForm = ({ movie, setMode }: MovieEditFormProps) => {
             )
         }
 
+        // Если ключ - аннотация, отобразить Textarea
+        if (key === 'annotation') {
+            return (
+                <React.Fragment key={key}>
+                    <div className={classes.key}>{label}</div>
+                    <AutoResizeTextarea
+                        text={String(value)}
+                        setText={(newValue) => handleChange(key, newValue)}
+                        maxLength={300}
+                        className={classes.value}
+                        handleEnter={(ref)=>ref.current.value.trim()}
+                    />
+                </React.Fragment>
+            )
+        }
+
         // Для остальных полей использовать Input
         return (
             <React.Fragment key={key}>
@@ -104,6 +121,7 @@ const MovieEditForm = ({ movie, setMode }: MovieEditFormProps) => {
                     value={String(value)}
                     setValue={(newValue) => handleChange(key, newValue)}
                     className={classes.value}
+                    type={key==='releaseYear' ? 'number' : 'text'}
                 />
             </React.Fragment>
         )
